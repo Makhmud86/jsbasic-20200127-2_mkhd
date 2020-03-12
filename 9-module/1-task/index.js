@@ -86,17 +86,17 @@ class CheckoutProductList {
 
         // удаляем элемент из хранилища
         if(cartData.length == 1) {
-          localStorage.clear();
+          localStorage.clear();  // если в корзине один товар - просто очищаем хранилище
+       
         } else {
+          
           for (let i=0; i<cartData.length; i++) {
             if(cartData[i].id == itemId) {
               cartData.splice(i, 1);
               this.setCartData(cartData);
             }
-          }
+          } 
           
-          //cartData.splice( item => item == products[itemId].id, 1);
-          //this.setCartData(cartData);
         }
         
         // удаляем элемент из верстки
