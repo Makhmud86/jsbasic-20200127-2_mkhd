@@ -5,7 +5,7 @@ class CheckoutProductList {
 
   constructor(parentElement) {
     this.el = parentElement;
-    this.products = JSON.parse(localStorage.getItem('cart-products'));
+    this.products = this.getCartData(); 
     this.renderOuter();
     this.renderProductCard(this.products);
     this.renderReviews(this.products);
