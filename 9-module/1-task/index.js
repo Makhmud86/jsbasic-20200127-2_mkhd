@@ -75,33 +75,17 @@ class CheckoutProductList {
   }
 
   deleteFromCart(event, products) {
-
     if (event.target.tagName == 'BUTTON') {
       
       if (confirm('Вы уверены, что хотите удалить этот товар из корзины?')) {
-
         let itemId = +event.target.getAttribute('item-id');
-        let cartData = this.getCartData();
-        console.log(cartData);
-
-        // удаляем элемент из хранилища
-        if(cartData.length == 1) {
-          localStorage.clear();  // если в корзине один товар - просто очищаем хранилище
-       
-        } else {
-          
-          for (let i=0; i<cartData.length; i++) {
-            if(cartData[i].id == itemId) {
-              cartData.splice(i, 1);
-              this.setCartData(cartData);
-            }
-          } 
-          
-        }
         
+        // удаляем элемент из корзины
+        let cartData = this.getCartData().filter(item => (item.id != itemId));
+        this.setCartData(cartData);
+
         // удаляем элемент из верстки
-        event.target.closest('div .product-wrapper').remove();
-                
+        event.target.closest('div .product-wrapper').remove();                
       }
     }    
   }
